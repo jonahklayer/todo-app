@@ -1,0 +1,22 @@
+{
+  "name": "todo-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "5.7.2"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "latest",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  }
+}
