@@ -1,11 +1,17 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { supabase } from '../lib/supabase/client'
+import { createClient } from '@supabase/supabase-js'
 
 export default function Home() {
   const [todos, setTodos] = useState([])
   const [newTodo, setNewTodo] = useState('')
   const [isLoading, setIsLoading] = useState(true)
+
+  // Create Supabase client inside component
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL || '',
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+  )
 
   // Move fetchTodos outside useEffect so we can use it with the refresh button
   const fetchTodos = async () => {
