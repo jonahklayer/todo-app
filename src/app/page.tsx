@@ -5,17 +5,23 @@ import { supabase } from '../lib/supabase/client'
 export default function Home() {
   const [todos, setTodos] = useState([])
   const [newTodo, setNewTodo] = useState('')
+  const [isLoading, setIsLoading] = useState(true)  // Add loading state
 
-  // When page first loads, get todos from database
   useEffect(() => {
+    // Only fetch todos after component mounts (client-side)
+    const fetchTodos = async () => {
+      try {
+        const { data, error } = await supabase.from('todos').select('*')
+        if (data) setTodos(data)
+      } catch (error) {
+        console.error('Error fetching todos:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
     fetchTodos()
   }, [])
-
-  // Function that gets todos from database
-  const fetchTodos = async () => {
-    const { data, error } = await supabase.from('todos').select('*')
-    if (data) setTodos(data)
-  }
 
   // Function that creates a new todo
   const createTodo = async () => {
