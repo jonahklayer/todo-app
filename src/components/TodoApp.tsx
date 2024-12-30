@@ -18,30 +18,69 @@ export default function TodoApp() {
   }
 
   return (
-    <div className="max-w-md mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Todo List</h1>
-      <form onSubmit={addTask} className="flex gap-2 mb-4">
+    <div style={{
+      fontFamily: 'Arial, sans-serif',
+      maxWidth: '600px',
+      margin: '0 auto',
+      padding: '20px'
+    }}>
+      <h1>Todo List 2</h1>
+      
+      <form onSubmit={addTask} style={{
+        display: 'flex',
+        gap: '10px',
+        marginBottom: '20px'
+      }}>
         <input
           type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
-          className="flex-1 p-2 border rounded"
           placeholder="Enter a new task"
+          required
+          style={{
+            flexGrow: 1,
+            padding: '10px',
+            fontSize: '16px'
+          }}
         />
-        <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">
-          Add
+        <button 
+          type="submit"
+          style={{
+            padding: '10px 20px',
+            fontSize: '16px',
+            cursor: 'pointer'
+          }}
+        >
+          Add Task
         </button>
       </form>
-      <ul>
+
+      <ul style={{
+        listStyle: 'none',
+        padding: 0
+      }}>
         {tasks.map((task, index) => (
-          <li key={index} className="flex justify-between items-center p-2 border-b">
+          <li 
+            key={index} 
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '10px',
+              borderBottom: '1px solid #ddd'
+            }}
+          >
             <span>{task}</span>
-            <button
+            <a 
               onClick={() => deleteTask(index)}
-              className="text-red-500"
+              style={{
+                color: 'red',
+                textDecoration: 'none',
+                cursor: 'pointer'
+              }}
             >
               Delete
-            </button>
+            </a>
           </li>
         ))}
       </ul>
